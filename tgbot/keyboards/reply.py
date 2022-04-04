@@ -144,7 +144,7 @@ language_menu = ReplyKeyboardMarkup(
             KeyboardButton(_('↩ Назад'))
         ],
         [
-            KeyboardButton('🇷🇺 Русский'), KeyboardButton('🇷🇼 Українська'), KeyboardButton('🇬🇧 English')
+            KeyboardButton('🇷🇺 Русский'), KeyboardButton('🇺🇦 Українськаф'), KeyboardButton('🇬🇧 English')
         ]
     ],
     resize_keyboard=True

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-30 13:04+0300\n"
-"PO-Revision-Date: 2022-04-03 14:03+0300\n"
+"PO-Revision-Date: 2022-04-04 10:40+0300\n"
 "Last-Translator: \n"
 "Language-Team: uk <LL@li.org>\n"
 "Language: uk\n"
@@ -207,7 +207,7 @@ msgstr "👑 Адмінка"
 
 #: tgbot/handlers/settings_menu.py:57 tgbot/keyboards/reply.py:135
 msgid "🇷🇺 Язык"
-msgstr "🇷🇼 Мова"
+msgstr "🇺🇦 Мова"
 
 #: tgbot/handlers/submission_menu.py:59
 msgid "Выбери предмет, на сдачу которого хочешь записаться 👇"

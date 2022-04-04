@@ -23,14 +23,13 @@ def get_timetable_day(today: bool, message: types.Message):
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
 
-    day_id = datetime.now().isoweekday()
+    now = datetime.now().date()
+    day_id = now.isoweekday()
 
     days_of_week = [str(_('Понедельник')), str(_('Вторник')), str(_('Среда')), str(_('Четверг')), str(_('Пятница')),
                     str(_('Суббота')), str(_('Воскресенье'))]
 
     text_list = []
-
-    now = datetime.now().date()
 
     if today:
         text_list.append(str(_('Расписание на сегодня:')))
@@ -82,7 +81,7 @@ def get_timetable_week(this_week: bool, message: types.Message):
         text_list.append(str(_('Расписание на эту неделю:')))
     else:
         text_list.append(str(_('Расписание на следующую неделю:')))
-        now = datetime.now().date() + timedelta(days=8-day_id)
+        now += timedelta(days=8-day_id)
         day_id = 1
 
     day_list = session.query(Day).filter(Day.Id >= day_id).all()

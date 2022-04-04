@@ -22,7 +22,7 @@ async def show_language_menu(message: types.Message):
 
 
 async def select_language(message: types.Message, state: FSMContext):
-    language_list = {'🇷🇺 Русский': 'ru', '🇷🇼 Українська': 'uk', '🇬🇧 English': 'en'}
+    language_list = {'🇷🇺 Русский': 'ru', '🇺🇦 Українська': 'uk', '🇬🇧 English': 'en'}
 
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
