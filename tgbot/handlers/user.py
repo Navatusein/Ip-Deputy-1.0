@@ -31,7 +31,7 @@ async def user_start(message: types.Message):
         student: Student = user.Student
         await message.answer(text=_('Добро пожаловать, {firstname} {lastname}').format(firstname=student.Firstname,
                                                                                        lastname=student.Lastname), reply_markup=main_menu)
-        logger.info(f"id: {user_id} user: {message.from_user.username} authorized successfully")
+        logger.info(f"id: {user_id} user: {message.from_user.username} authorized successfully.")
 
 
 async def user_not_logined(message: types.Message):

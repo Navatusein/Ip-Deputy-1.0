@@ -17,8 +17,10 @@ class StateShowSubmission(StatesGroup):
     Confirmation = State()
 
 
-class StateGetSubmission(StatesGroup):
+class StateShowSubmissionList(StatesGroup):
     SelectSubject = State()
+    SelectAction = State()
+    Confirmation = State()
 
 
 class StateGetTimetableFile(StatesGroup):

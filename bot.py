@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import logging
 
 from aiogram import Bot, Dispatcher
@@ -57,11 +58,18 @@ def register_all_handlers(dp):
 
 
 async def main():
+    log_format = u'%(levelname)s %(asctime)s [%(filename)s %(lineno)s] [%(module)s.%(funcName)s] %(message)s'
+
     logging.basicConfig(
         level=logging.INFO,
-        format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
+        format=log_format,
     )
-    logger.info("Starting bot")
+
+    handler = logging.FileHandler(f'logs/log.log')
+    handler.setFormatter(logging.Formatter(log_format))
+    logger.addHandler(handler)
+
+    logger.info("Starting bot.")
     config = load_config(".env")
 
     storage = RedisStorage2() if config.tg_bot.use_redis else MemoryStorage()
@@ -91,4 +99,4 @@ if __name__ == '__main__':
     try:
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
-        logger.error("Bot stopped!")
+        logger.warning("Bot stopped!")

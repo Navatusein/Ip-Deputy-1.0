@@ -13,3 +13,6 @@ class User(Base):
 
     Student = relationship('Student', back_populates='User', uselist=False)
     Submissions = relationship('Submission', back_populates='User')
+
+    def __repr__(self):
+        return f'{self.Student.full_name}'

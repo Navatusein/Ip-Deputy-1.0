@@ -9,3 +9,6 @@ class SubjectType(Base):
     Id = Column(Integer(), primary_key=True, autoincrement=True, unique=True, nullable=False)
     TypeName = Column(String(100), unique=True, nullable=False)
     ShortTypeName = Column(String(100), unique=True, nullable=False)
+
+    def __repr__(self):
+        return self.TypeName

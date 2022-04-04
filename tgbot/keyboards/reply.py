@@ -51,6 +51,9 @@ main_menu_admin = ReplyKeyboardMarkup(
 confirmation_menu = ReplyKeyboardMarkup(
     keyboard=[
         [
+            KeyboardButton(_('↩ Назад'))
+        ],
+        [
             KeyboardButton(_('❎ Отменить')), KeyboardButton(_('✅ Подтвердить'))
         ]
     ],
@@ -79,6 +82,18 @@ submission_control_menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(_('❌ Снять заявку'))
+        ]
+    ],
+    resize_keyboard=True
+)
+
+submissions_control_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(_('↩ Назад'))
+        ],
+        [
+            KeyboardButton(_('❌ Очистить список'))
         ]
     ],
     resize_keyboard=True

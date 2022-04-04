@@ -8,9 +8,11 @@ from sqlalchemy import or_
 
 from sqlalchemy.orm import Session
 
+from config import Config
+
 from tgbot.misc.states import StateRegisterSubmission
 from tgbot.misc.states import StateShowSubmission
-from tgbot.misc.states import StateGetSubmission
+from tgbot.misc.states import StateShowSubmissionList
 
 from tgbot.misc.emoji import circles_emoji
 from tgbot.misc.emoji import number_emoji
@@ -19,7 +21,7 @@ from tgbot.models.user import User
 from tgbot.models.submission import Submission
 from tgbot.models.subject import Subject
 
-from tgbot.keyboards.reply import main_menu
+from tgbot.keyboards.reply import main_menu, submissions_control_menu
 from tgbot.keyboards.reply import submission_control_menu
 from tgbot.keyboards.reply import submission_menu
 from tgbot.keyboards.reply import confirmation_menu
@@ -158,6 +160,7 @@ async def register_submission_confirm(message: types.Message, state: FSMContext)
         session.commit()
 
         await message.answer(text=_('Вы успешно записались на сдачу 👍'), reply_markup=submission_menu)
+        logger.info(f'{user} {submission} registered successfully.')
         await state.finish()
     else:
         await message.answer(text=_('Некорректный ввод!'))
@@ -196,8 +199,8 @@ async def control_submission_select(message: types.Message, state: FSMContext):
     submission_str = message.text[2::]
 
     user_id = message.from_user.id
-
     user = session.query(User).filter(User.TelegramId == user_id).first()
+
     submissions = user.Submissions
 
     selected_submission = None
@@ -245,6 +248,11 @@ async def control_submission_confirm(message: types.Message, state: FSMContext):
         async with state.proxy() as data:
             submission = data['submission']
 
+        user_id = message.from_user.id
+        user = session.query(User).filter(User.TelegramId == user_id).first()
+
+        logger.info(f'{str(user)} {submission} deleted successfully.')
+
         session.delete(submission)
         session.commit()
 
@@ -287,12 +295,13 @@ async def get_submissions_begin(message: types.Message):
     await message.answer(text=_('Выбери предмет 👇'),
                          reply_markup=ReplyKeyboardMarkup(keyboard=menu, resize_keyboard=True))
 
-    await StateGetSubmission.SelectSubject.set()
+    await StateShowSubmissionList.SelectSubject.set()
 
 
 async def get_submissions_select_subject(message: types.Message, state: FSMContext):
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
+    config: Config = message.bot.get('config')
 
     parsed_message = message.text.split(" ")
 
@@ -321,6 +330,9 @@ async def get_submissions_select_subject(message: types.Message, state: FSMConte
         if submission.TypeId == work_type_id:
             list_submissions.append(submission)
 
+    async with state.proxy() as data:
+        data['submissions'] = list_submissions
+
     if not list_submissions:
         await message.answer(text=_('На сдачу не кто не записался'))
         return
@@ -342,11 +354,58 @@ async def get_submissions_select_subject(message: types.Message, state: FSMConte
 
     text_answer = '\n'.join(text_array)
 
-    await message.answer(text=text_answer, reply_markup=submission_menu, parse_mode='HTML')
+    if message.from_user.id in config.tg_bot.admin_ids:
+        await message.answer(text=text_answer, reply_markup=submissions_control_menu)
+        await StateShowSubmissionList.SelectAction.set()
+        return
+
+    await message.answer(text=text_answer, reply_markup=submission_menu)
     await state.finish()
 
 
+async def get_submissions_action(message: types.Message, state: FSMContext):
+    session: Session = message.bot.get('session')
+    logger: logging.Logger = message.bot.get('logger')
+
+    if message.text == _('❌ Очистить список'):
+        await message.answer(text=_('Вы уверены что хотите очистить список?'), reply_markup=confirmation_menu)
+        await StateShowSubmissionList.Confirmation.set()
+    else:
+        await message.answer(text=_('Некорректный ввод!'))
+
+
+async def get_submissions_confirm(message: types.Message, state: FSMContext):
+    session: Session = message.bot.get('session')
+    logger: logging.Logger = message.bot.get('logger')
+
+    if message.text == _('❎ Отменить'):
+        await message.answer(text=_('Отмена.'), reply_markup=submission_menu)
+        await state.finish()
+        return
+    elif message.text == _('✅ Подтвердить'):
+        async with state.proxy() as data:
+            list_submissions = data['submissions']
+
+        user_id = message.from_user.id
+        user = session.query(User).filter(User.TelegramId == user_id).first()
+
+        submission = session.query(Submission).filter(Submission.Id == list_submissions[0].Id).first()
+
+        logger.info(f'Admin {str(user)} {submission.Subject.get_name} {submission.SubjectType} cleared the list successfully.')
+
+        for submission in list_submissions:
+            session.delete(submission)
+
+        session.commit()
+
+        await state.finish()
+        await message.answer(text=_('Список успешно очищен 👍'), reply_markup=submission_menu)
+    else:
+        await message.answer(text=_('Некорректный ввод!'))
+        return
+
 # endregion
+
 
 async def back_to_submission_menu(message: types.Message, state: FSMContext):
     await message.answer(text=message.text, reply_markup=submission_menu)
@@ -357,9 +416,13 @@ def register_submission_menu(dp: Dispatcher):
     dp.register_message_handler(back_to_submission_menu, text=_('↩ Назад'), state=[
         StateRegisterSubmission.SelectSubject,
         StateRegisterSubmission.SelectWorkNumber,
+        StateRegisterSubmission.Confirmation,
         StateShowSubmission.SelectSubmission,
         StateShowSubmission.SelectAction,
-        StateGetSubmission.SelectSubject])
+        StateShowSubmission.Confirmation,
+        StateShowSubmissionList.SelectSubject,
+        StateShowSubmissionList.SelectAction,
+        StateShowSubmissionList.Confirmation])
 
     dp.register_message_handler(register_submission_begin, text=_('➕ Записаться'), is_logined=True)
     dp.register_message_handler(register_submission_select_subject, state=StateRegisterSubmission.SelectSubject)
@@ -372,4 +435,6 @@ def register_submission_menu(dp: Dispatcher):
     dp.register_message_handler(control_submission_confirm, state=StateShowSubmission.Confirmation)
 
     dp.register_message_handler(get_submissions_begin, text=_('🗳 Получить список'), is_logined=True)
-    dp.register_message_handler(get_submissions_select_subject, state=StateGetSubmission.SelectSubject)
+    dp.register_message_handler(get_submissions_select_subject, state=StateShowSubmissionList.SelectSubject)
+    dp.register_message_handler(get_submissions_action, state=StateShowSubmissionList.SelectAction)
+    dp.register_message_handler(get_submissions_confirm, state=StateShowSubmissionList.Confirmation)
