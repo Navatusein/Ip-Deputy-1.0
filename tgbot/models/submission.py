@@ -8,8 +8,8 @@ class Submission(Base):
     __tablename__ = "Submissions"
     Id = Column(Integer(), primary_key=True, autoincrement=True, unique=True, nullable=False)
     TypeId = Column(Integer(), ForeignKey('SubjectTypes.Id'), nullable=False)
-    SubjectId = Column(Integer(), ForeignKey('Subjects.Id'), nullable=False)
-    UserId = Column(Integer(), ForeignKey('Users.Id'), nullable=False)
+    SubjectId = Column(Integer(), ForeignKey('Subjects.Id', ondelete="cascade"), nullable=False)
+    UserId = Column(Integer(), ForeignKey('Users.Id', ondelete="cascade"), nullable=False)
     WorkNumber = Column(Integer(), nullable=False)
 
     User = relationship('User', back_populates='Submissions')

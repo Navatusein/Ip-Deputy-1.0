@@ -13,7 +13,7 @@ class Teacher(Base):
     Lastname = Column(String(100), nullable=False)
     Firstname = Column(String(100), nullable=False)
     Surname = Column(String(100), nullable=False)
-    PhoneNumber = Column(Integer(), unique=True)
+    PhoneNumber = Column(String(13), unique=True)
     TelegramName = Column(String(100), unique=True)
 
     @hybrid_property

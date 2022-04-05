@@ -23,7 +23,7 @@ async def login_contact(message: types.Message, state: FSMContext):
 
     user_id = message.from_user.id
     phone_number = message.contact['phone_number']
-    student: Student = session.query(Student).filter(Student.PhoneNumber == int(phone_number)).first()
+    student: Student = session.query(Student).filter(Student.PhoneNumber == str(int(phone_number))).first()
 
     if message.contact['user_id'] != user_id:
         await message.answer(_('Это не ваш контакт!'))

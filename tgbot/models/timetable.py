@@ -9,7 +9,7 @@ class Timetable(Base):
     __tablename__ = "Timetable"
     Id = Column(Integer(), primary_key=True, autoincrement=True, unique=True, nullable=False)
     TypeId = Column(Integer(), ForeignKey('SubjectTypes.Id'), nullable=False)
-    SubjectId = Column(Integer(), ForeignKey('Subjects.Id'), nullable=False)
+    SubjectId = Column(Integer(), ForeignKey('Subjects.Id', ondelete="cascade"), nullable=False)
     CoupleId = Column(Integer(), ForeignKey('Couples.Id'), nullable=False)
     DayId = Column(Integer(), ForeignKey('Days.Id'), nullable=False)
     Subgroup = Column(Integer())

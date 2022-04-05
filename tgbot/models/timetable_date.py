@@ -10,7 +10,7 @@ from tgbot.services.database.db import Base
 class TimetableDate(Base):
     __tablename__ = "TimetableDates"
     Id = Column(Integer(), primary_key=True, unique=True, nullable=False)
-    TimetableId = Column(Integer(), ForeignKey('Timetable.Id'))
+    TimetableId = Column(Integer(), ForeignKey('Timetable.Id', ondelete="cascade"))
     Date = Column(Date(), nullable=False)
 
     Timetable = relationship('Timetable', back_populates='TimetableDates', uselist=False)

@@ -14,7 +14,7 @@ class Student(Base):
     Lastname = Column(String(100), nullable=False)
     Firstname = Column(String(100), nullable=False)
     Surname = Column(String(100), nullable=False)
-    PhoneNumber = Column(Integer(), unique=True, nullable=False)
+    PhoneNumber = Column(String(13), unique=True, nullable=False)
     Email = Column(String(100), unique=True, nullable=False)
     TelegramName = Column(String(100), unique=True)
     Birthday = Column(Date(), nullable=False)
