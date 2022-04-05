@@ -41,12 +41,12 @@ async def timetable_file_get(message: types.Message, state: FSMContext):
     if not document.file_name.__contains__('.ipd'):
         await message.answer(text=_('Не правильный файл!'))
 
-    await message.bot.download_file_by_id(file_id=document.file_id, destination='files\\timetable\\timetable.ipd')
+    await message.bot.download_file_by_id(file_id=document.file_id, destination='files/timetable/timetable.ipd')
 
     subject_dict = {}
 
     try:
-        with ZipFile('files\\timetable\\timetable.ipd') as timetable_file:
+        with ZipFile('files/timetable/timetable.ipd') as timetable_file:
             with timetable_file.open('Subjects.json') as json_file:
                 parsed_subjects_list = json.loads(json_file.read())
 
