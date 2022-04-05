@@ -94,7 +94,9 @@ async def timetable_file_get(message: types.Message, state: FSMContext):
         logger.error(f'User: {message.from_user.username} Id: {message.from_user.id} {ex}')
         return
 
-    logger.info(f'User: {message.from_user.username} Id: {message.from_user.id} New timetable import successful')
+    user = session.query(User).filter(User.TelegramId == message.from_user.id).first()
+
+    logger.info(f'Admin {user} new timetable import successful.')
     await message.answer(text=_('Импорт прошёл успешно!'))
 
     await state.finish()

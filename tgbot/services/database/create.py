@@ -1,4 +1,4 @@
-from tgbot.services.database.db import Base, engine
+from tgbot.services.database.db import Base
 
 from tgbot.models.student import Student
 from tgbot.models.subject import Subject
@@ -12,5 +12,5 @@ from tgbot.models.timetable_date import TimetableDate
 from tgbot.models.teacher import Teacher
 
 
-def create_tables():
+def create_tables(engine):
     Base.metadata.create_all(engine)

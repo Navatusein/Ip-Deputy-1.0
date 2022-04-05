@@ -9,7 +9,7 @@ from aiogram.contrib.fsm_storage.redis import RedisStorage2
 
 from tgbot.config import load_config
 
-from tgbot.services.database.db import session
+from tgbot.services.database.db import create_connection
 from tgbot.services.database.create import create_tables
 
 from tgbot.middlewares.localization import i18n
@@ -76,6 +76,8 @@ async def main():
     bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher(bot, storage=storage)
 
+    engine, session = create_connection(config.db.connection_string)
+
     bot['config'] = config
     bot['session'] = session
     bot['logger'] = logger
@@ -84,7 +86,7 @@ async def main():
     register_all_filters(dp)
     register_all_handlers(dp)
 
-    create_tables()
+    create_tables(engine)
 
     # start
     try:

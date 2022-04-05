@@ -8,7 +8,7 @@ from sqlalchemy import or_
 
 from sqlalchemy.orm import Session
 
-from config import Config
+from tgbot.config import Config
 
 from tgbot.misc.states import StateRegisterSubmission
 from tgbot.misc.states import StateShowSubmission
@@ -391,7 +391,8 @@ async def get_submissions_confirm(message: types.Message, state: FSMContext):
 
         submission = session.query(Submission).filter(Submission.Id == list_submissions[0].Id).first()
 
-        logger.info(f'Admin {str(user)} {submission.Subject.get_name} {submission.SubjectType} cleared the list successfully.')
+        logger.info(f'Admin: {user} subject: {submission.Subject.get_name} {submission.SubjectType} '
+                    f'cleared the list successfully.')
 
         for submission in list_submissions:
             session.delete(submission)
