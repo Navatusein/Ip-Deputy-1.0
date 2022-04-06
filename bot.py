@@ -57,6 +57,13 @@ def register_all_handlers(dp):
     register_echo(dp)
 
 
+async def birthday_check():
+    while True:
+        await asyncio.sleep(5)
+
+        print('Время пришло!')
+
+
 async def main():
     log_format = u'%(levelname)s %(asctime)s [%(filename)s %(lineno)s] [%(module)s.%(funcName)s] %(message)s'
 
@@ -90,6 +97,9 @@ async def main():
 
     # start
     try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(birthday_check())
+
         await dp.start_polling()
     finally:
         await dp.storage.close()
