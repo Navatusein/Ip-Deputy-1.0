@@ -136,6 +136,9 @@ information_menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(_('🧑‍🎓 Студенты')), KeyboardButton(_('🧑🏻‍🏫 Преподаватели'))
+        ],
+        [
+            KeyboardButton(_('📖 Предметы'))
         ]
     ],
     resize_keyboard=True

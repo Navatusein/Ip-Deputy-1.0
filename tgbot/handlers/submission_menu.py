@@ -45,10 +45,10 @@ async def register_submission_begin(message: types.Message):
         row = []
         subject_name = subject.get_name
 
-        if subject.LaboratoryCount != 0:
+        if subject.NeedLaboratorySubmission:
             row.append(KeyboardButton(f"{circles_emoji[emoji_index]} {subject_name} (Лаб)"))
 
-        if subject.PracticalCount != 0:
+        if subject.NeedPracticalSubmission:
             row.append(KeyboardButton(f"{circles_emoji[emoji_index]} {subject_name} (Прак)"))
 
         keyboard.append(row)
@@ -97,9 +97,18 @@ async def register_submission_select_subject(message: types.Message, state: FSMC
 
     row = []
     for i in range(1, work_count + 1):
-        row.append(KeyboardButton(f'{number_emoji[i]}'))
+        row.append(KeyboardButton(f'{i}'))
 
-    menu.append(row)
+    row_size = len(row)
+    if row_size >= 8:
+        left = int(row_size / 2)
+        right = row_size - left
+
+        menu.append(row[:left])
+        menu.append(row[right:])
+    else:
+        menu.append(row)
+
     await message.answer(text=_('Выбери номер работы 👇'),
                          reply_markup=ReplyKeyboardMarkup(keyboard=menu, resize_keyboard=True))
     await StateRegisterSubmission.SelectWorkNumber.set()
@@ -108,9 +117,26 @@ async def register_submission_select_subject(message: types.Message, state: FSMC
 async def register_submission_select_work_number(message: types.Message, state: FSMContext):
     logger: logging.Logger = message.bot.get('logger')
 
+    async with state.proxy() as data:
+        subject = data['subject']
+        work_type = data['work_type']
+
+    if work_type == '(Лаб)':
+        work_count = subject.LaboratoryCount
+    else:
+        work_count = subject.PracticalCount
+
     try:
-        work_number = number_emoji.index(message.text)
+        work_number = int(message.text)
+    except ValueError:
+        await message.answer(text=_('Некорректный ввод!'))
+        return
     except Exception as ex:
+        await message.answer(text=_('Некорректный ввод!'))
+        logger.exception(ex)
+        return
+
+    if work_number not in range(1, work_count):
         await message.answer(text=_('Некорректный ввод!'))
         return
 
@@ -279,10 +305,10 @@ async def get_submissions_begin(message: types.Message):
         row = []
         subject_name = subject.get_name
 
-        if subject.LaboratoryCount != 0:
+        if subject.NeedLaboratorySubmission:
             row.append(KeyboardButton(f"{circles_emoji[emoji_index]} {subject_name} (Лаб)"))
 
-        if subject.PracticalCount != 0:
+        if subject.NeedPracticalSubmission:
             row.append(KeyboardButton(f"{circles_emoji[emoji_index]} {subject_name} (Прак)"))
 
         menu.append(row)

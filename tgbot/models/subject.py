@@ -11,10 +11,12 @@ class Subject(Base):
     SubjectName = Column(String(100), unique=True, nullable=False)
     SubjectShortName = Column(String(50), unique=True, nullable=True)
     LaboratoryCount = Column(Integer(), nullable=False, default=0)
+    NeedLaboratorySubmission = Column(Boolean(), default=False)
     PracticalCount = Column(Integer(), nullable=False, default=0)
+    NeedPracticalSubmission = Column(Boolean(), default=False)
 
     Submissions = relationship('Submission', back_populates='Subject')
-    # Timetables = relationship('Timetable', back_populates='Subject')
+    Timetables = relationship('Timetable', back_populates='Subject')
 
     @hybrid_property
     def get_name(self):

@@ -35,6 +35,10 @@ class StateTeachersInformation(StatesGroup):
     SelectTeacher = State()
 
 
+class StateSubjectsInformation(StatesGroup):
+    SelectSubject = State()
+
+
 class StateChangeLanguage(StatesGroup):
     SelectLanguage = State()
 
