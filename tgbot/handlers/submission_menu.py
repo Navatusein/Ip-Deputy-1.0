@@ -136,14 +136,12 @@ async def register_submission_select_work_number(message: types.Message, state: 
         logger.exception(ex)
         return
 
-    if work_number not in range(1, work_count):
+    if work_number not in range(1, work_count + 1):
         await message.answer(text=_('Некорректный ввод!'))
         return
 
     async with state.proxy() as data:
         data['work_number'] = work_number
-        subject = data['subject']
-        work_type = data['work_type']
 
     await message.answer(text=_('{subject_name} {work_type} работа № {work_number} \nВсё правильно?')
                          .format(subject_name=subject.get_name, work_type=work_type,

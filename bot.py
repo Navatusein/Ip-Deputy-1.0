@@ -80,6 +80,7 @@ async def main():
     logging.basicConfig(
         level=logging.INFO,
         format=log_format,
+        encoding='UTF-8'
     )
 
     handler = logging.FileHandler(f'logs/log.log')
