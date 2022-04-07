@@ -65,3 +65,7 @@ venv.bak/
 
 # Databases
 *.db
+
+# alembic
+alembic.ini
+migration/versions/*
