@@ -1,13 +1,20 @@
 import asyncio
-import datetime
 import logging
+
+from datetime import datetime
 
 from aiogram import Bot, Dispatcher
 
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
+from sqlalchemy.orm import Session
 
 from tgbot.config import load_config
+from tgbot.misc.happy_birthday import birthday_check
+
+from tgbot.models.student import Student
+
+from tgbot.misc.wait_until import wait_until
 
 from tgbot.services.database.db import create_connection
 from tgbot.services.database.create import create_tables
@@ -27,6 +34,9 @@ from tgbot.handlers.faq_menu import register_faq_menu
 from tgbot.handlers.timetable_menu import register_timetable_menu
 from tgbot.handlers.information_menu import register_information_menu
 from tgbot.handlers.echo import register_echo
+
+# alembic revision --autogenerate -m ''
+# alembic upgrade head
 
 # pybabel extract --input-dirs=tgbot -o locales/ip_deputy_bot.pot
 # pybabel update -d locales -D ip_deputy_bot -i locales/ip_deputy_bot.pot
@@ -57,11 +67,11 @@ def register_all_handlers(dp):
     register_echo(dp)
 
 
-async def birthday_check():
+async def birthday_check_task(dp: Dispatcher):
     while True:
-        await asyncio.sleep(5)
-
-        print('Время пришло!')
+        await wait_until(hour=9)
+        await birthday_check(dp)
+        await asyncio.sleep(1)
 
 
 async def main():
@@ -98,7 +108,9 @@ async def main():
     # start
     try:
         loop = asyncio.get_event_loop()
-        loop.create_task(birthday_check())
+
+        loop.create_task(birthday_check(dp))
+        loop.create_task(birthday_check_task(dp))
 
         await dp.start_polling()
     finally:

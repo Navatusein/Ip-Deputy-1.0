@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Integer, Column, String, Date
+from sqlalchemy import Integer, Column, String, Date, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
 
@@ -18,6 +18,7 @@ class Student(Base):
     Email = Column(String(100), unique=True, nullable=False)
     TelegramName = Column(String(100), unique=True)
     Birthday = Column(Date(), nullable=False)
+    LastCongratulations = Column(Date(), nullable=True, default="2000-01-01")
     Subgroup = Column(Integer(), nullable=False)
 
     User = relationship('User', back_populates="Student", uselist=False)
@@ -30,3 +31,11 @@ class Student(Base):
     def formatted_birthday(self):
         dt = datetime.strptime(str(self.Birthday), '%Y-%m-%d')
         return f'{dt.strftime("%d.%m.%Y")}'
+
+    @hybrid_property
+    def birthday(self):
+        dt = datetime.strptime(str(self.Birthday), '%Y-%m-%d')
+        return dt
+
+    def __repr__(self):
+        return self.full_name
