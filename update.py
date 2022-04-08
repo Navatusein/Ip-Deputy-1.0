@@ -1,3 +1,5 @@
+import datetime
+import json
 import os
 import shutil
 import requests
@@ -8,16 +10,18 @@ from zipfile import ZipFile
 def check_new_version(url: str):
     version_request = requests.get(url)
 
-    if not os.path.exists('version.txt'):
-        return True
+    if not os.path.exists('version.json'):
+        return True, True, True
 
-    with open(file='version.txt', mode='r') as version_file:
-        version_local = version_file.read()
+    with open(file='version.json', mode='r') as version_file:
+        version_file_data = json.load(version_file)
+        version_request_data = json.loads(version_request.text)
 
-        if version_local != version_request.text:
-            return True
+    code_update = version_file_data['CodeUpdate'] != version_request_data['CodeUpdate']
+    requirements_update = version_file_data['RequirementsUpdate'] != version_request_data['RequirementsUpdate']
+    database_update = version_file_data['DatabaseUpdate'] != version_request_data['DatabaseUpdate']
 
-    return False
+    return code_update, requirements_update, database_update
 
 
 def download_latest_version(url: str):
@@ -56,12 +60,30 @@ def update():
 
 
 def main():
-    if not check_new_version("https://raw.githubusercontent.com/Navatusein/IP-Deputy/master/version.txt"):
+    code_update, requirements_update, database_update = check_new_version('https://raw.githubusercontent.com/'
+                                                                          'Navausein/IP-Deputy/master/version.txt')
+
+    if not code_update and not requirements_update and not database_update:
         print('Is no new version')
+        return
+
+    if code_update:
+        print('Update code')
+        download_latest_version("https://github.com/Navatusein/IP-Deputy/archive/refs/heads/master.zip")
+        update()
+
+    if requirements_update:
+        print('Update requirements')
+        os.system(f'pip install -r requirements.txt')
+
+    if database_update:
+        os.system(f"alembic revision --autogenerate -m '{datetime.datetime.now()}'")
+        os.system(f'alembic upgrade head')
+
+        # alembic revision --autogenerate -m ''
+        # alembic upgrade head
 
     print('Start updating')
-    download_latest_version("https://github.com/Navatusein/IP-Deputy/archive/refs/heads/master.zip")
-    update()
 
     print('Do you want install requirements.txt [y/n] ?')
     answer = input()
