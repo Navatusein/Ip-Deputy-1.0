@@ -60,8 +60,8 @@ def update():
 
 
 def main():
-    code_update, requirements_update, database_update = check_new_version('https://raw.githubusercontent.com/'
-                                                                          'Navausein/IP-Deputy/master/version.txt')
+    code_update, requirements_update, database_update = check_new_version("https://raw.githubusercontent.com/"
+                                                                          "Navatusein/IP-Deputy/master/version.json")
 
     if not code_update and not requirements_update and not database_update:
         print('Is no new version')
@@ -82,16 +82,6 @@ def main():
 
         # alembic revision --autogenerate -m ''
         # alembic upgrade head
-
-    print('Start updating')
-
-    print('Do you want install requirements.txt [y/n] ?')
-    answer = input()
-
-    correct_answers = ['y', 'yes']
-
-    if answer in correct_answers:
-        os.system(f'pip install -r requirements.txt')
 
     print('Updating finished!')
 
