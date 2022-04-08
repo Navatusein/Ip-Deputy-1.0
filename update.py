@@ -77,7 +77,7 @@ def main():
         os.system(f'pip install -r requirements.txt')
 
     if database_update:
-        os.system(f"alembic revision --autogenerate -m '{datetime.datetime.now()}'")
+        os.system(f"alembic revision --autogenerate -m '{datetime.datetime.now().date()}")
         os.system(f'alembic upgrade head')
 
         # alembic revision --autogenerate -m ''
