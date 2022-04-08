@@ -64,8 +64,8 @@ async def show_student_information(message: types.Message, state: FSMContext):
                                                                                               telegram=student.TelegramName))
     user_id = message.from_user.id
 
-    await message.bot.send_contact(chat_id=user_id, phone_number=f'+{student.PhoneNumber}', first_name=student.Firstname,
-                                   last_name=student.Lastname)
+    # await message.bot.send_contact(chat_id=user_id, phone_number=f'+{student.PhoneNumber}', first_name=student.Firstname,
+    #                               last_name=student.Lastname)
 
 
 async def show_teacher_list(message: types.Message):
