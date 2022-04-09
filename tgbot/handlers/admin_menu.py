@@ -338,11 +338,11 @@ async def add_timetable_select_subgroup(message: types.Message, state: FSMContex
 
     subgroup = None
 
-    if message_text == 'Подгруппа 1':
+    if message_text == _('Подгруппа 1'):
         subgroup = 1
-    elif message_text == 'Подгруппа 2':
+    elif message_text == _('Подгруппа 2'):
         subgroup = 2
-    elif message_text == 'Вся группа':
+    elif message_text == _('Вся группа'):
         subgroup = None
     else:
         await message.answer(text=_('Некорректный ввод!'))
