@@ -27,7 +27,7 @@ class Timetable(Base):
         if self.Subgroup is None:
             return ''
         else:
-            return f'11/{self.Subgroup}'
+            return f' 11/{self.Subgroup}'
 
     def __repr__(self):
-        return f'{self.Subject.get_name} ({self.SubjectType.ShortTypeName})'
+        return f'{self.Subject.get_name} ({self.SubjectType.ShortTypeName}){self.get_subgroup}'

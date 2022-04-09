@@ -46,7 +46,8 @@ def get_timetable_day(today: bool, message: types.Message):
 
     index = 1
 
-    timetable_list = day.Timetables
+    timetable_list: list[Timetable] = day.Timetables
+    timetable_list.sort(key=lambda timetable_: timetable_.CoupleId)
 
     for timetable in timetable_list:
         if timetable.Subgroup == student.Subgroup or timetable.Subgroup is None:
@@ -93,7 +94,8 @@ def get_timetable_week(this_week: bool, message: types.Message):
     for day in day_list:
         text_list.append(f'\n {days_of_week[day.Id - 1]} ({now.strftime("%d.%m.%Y")}):')
 
-        timetable_list = day.Timetables
+        timetable_list: list[Timetable] = day.Timetables
+        timetable_list.sort(key=lambda timetable_: timetable_.CoupleId)
         index = 1
 
         for timetable in timetable_list:

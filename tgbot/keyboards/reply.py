@@ -124,6 +124,9 @@ admin_menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(_('📥 Расписание')), KeyboardButton(_('📨 Уведомление'))
+        ],
+        [
+            KeyboardButton(_('➕ Добавить пару')), KeyboardButton(_('➖ Удалить пару'))
         ]
     ],
     resize_keyboard=True

@@ -36,12 +36,12 @@ async def register_submission_begin(message: types.Message):
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
 
-    subjects = session.query(Subject).filter(or_(Subject.PracticalCount != 0, Subject.LaboratoryCount != 0)).all()
+    subject_list = session.query(Subject).filter(or_(Subject.PracticalCount != 0, Subject.LaboratoryCount != 0)).all()
 
     keyboard = [[KeyboardButton(_('↩ Назад'))]]
 
     emoji_index = 0
-    for subject in subjects:
+    for subject in subject_list:
         row = []
         subject_name = subject.get_name
 
@@ -192,8 +192,6 @@ async def register_submission_confirm(message: types.Message, state: FSMContext)
 
 
 # endregion
-
-
 # region Control Submission
 async def control_submission_begin(message: types.Message):
     session: Session = message.bot.get('session')
@@ -288,8 +286,6 @@ async def control_submission_confirm(message: types.Message, state: FSMContext):
 
 
 # endregion
-
-
 # region Get Submissions
 async def get_submissions_begin(message: types.Message):
     session: Session = message.bot.get('session')

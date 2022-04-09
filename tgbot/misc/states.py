@@ -46,3 +46,21 @@ class StateChangeLanguage(StatesGroup):
 class StateSendNotification(StatesGroup):
     RequestNotificationMessage = State()
     Confirmation = State()
+
+
+class StateAddAdditionalCouple(StatesGroup):
+    SelectSubject = State()
+    SelectSubjectType = State()
+    SelectCouple = State()
+    SelectDate = State()
+    SelectSubgroup = State()
+    RequestAdditionalInformation = State()
+    Confirmation = State()
+
+
+class StateRemoveCouple(StatesGroup):
+    SelectDay = State()
+    SelectCouple = State()
+    SelectSubject = State()
+    SelectDate = State()
+    Confirmation = State()
