@@ -40,23 +40,36 @@ def get_timetable_day(today: bool, message: types.Message):
     user = session.query(User).filter(User.TelegramId == user_id).first()
     student = user.Student
 
-    index = 1
-
     timetable_list: list[Timetable] = day.Timetables
     timetable_list.sort(key=lambda timetable_: timetable_.CoupleId)
 
+    my_subgroup_timetable = []
+    other_subgroup_timetable = []
+
     for timetable in timetable_list:
-        if timetable.Subgroup == student.Subgroup or timetable.Subgroup is None:
-            timetable_dates: list[TimetableDate] = timetable.TimetableDates
+        timetable_dates: list[TimetableDate] = timetable.TimetableDates
 
-            for timetable_date in timetable_dates:
-                if timetable_date.Date == now:
-                    text_list.append(f'{number_emoji[index]} {timetable.Couple} {timetable}')
-                    index += 1
-                    break
+        for timetable_date in timetable_dates:
+            if timetable_date.Date == now:
+                if timetable.Subgroup == student.Subgroup or timetable.Subgroup is None:
+                    my_subgroup_timetable.append(
+                        f'{number_emoji[len(my_subgroup_timetable) + 1]} {timetable.Couple} {timetable}')
+                else:
+                    other_subgroup_timetable.append(
+                        f'{number_emoji[len(other_subgroup_timetable) + 1]} {timetable.Couple} {timetable}')
+                break
 
-    if len(text_list) == 1:
+    if len(my_subgroup_timetable):
+        text_list.append('\n'.join(my_subgroup_timetable))
+    else:
         text_list.append(str(_("Пар нету, отдыхай 👍")))
+
+    if len(other_subgroup_timetable):
+        text = str(_("Пары у другой подгруппы:"))
+        text_list.append(f'\n{text}')
+        text_list.append('\n'.join(other_subgroup_timetable))
+
+    print(text_list)
 
     return '\n'.join(text_list)
 
@@ -92,21 +105,33 @@ def get_timetable_week(this_week: bool, message: types.Message):
 
         timetable_list: list[Timetable] = day.Timetables
         timetable_list.sort(key=lambda timetable_: timetable_.CoupleId)
-        index = 1
+
+        my_subgroup_timetable = []
+        other_subgroup_timetable = []
 
         for timetable in timetable_list:
-            if timetable.Subgroup == student.Subgroup or timetable.Subgroup is None:
-                timetable_dates: list[TimetableDate] = timetable.TimetableDates
+            timetable_dates: list[TimetableDate] = timetable.TimetableDates
 
-                for timetable_date in timetable_dates:
-                    if timetable_date.Date == now:
-                        text_list.append(f'{" " * 5}{number_emoji[index]} {timetable.Couple} {timetable}')
-                        index += 1
-                        break
+            for timetable_date in timetable_dates:
+                if timetable_date.Date == now:
+                    if timetable.Subgroup == student.Subgroup or timetable.Subgroup is None:
+                        my_subgroup_timetable.append(
+                            f'{" " * 5}{number_emoji[len(my_subgroup_timetable) + 1]} {timetable.Couple} {timetable}')
+                    else:
+                        other_subgroup_timetable.append(
+                            f'{" " * 10}{number_emoji[len(other_subgroup_timetable) + 1]} {timetable.Couple} {timetable}')
+                    break
 
-        if index == 1:
-            text = _("Пар нету")
+        if len(my_subgroup_timetable):
+            text_list.append('\n'.join(my_subgroup_timetable))
+        else:
+            text = str(_("Пар нету"))
             text_list.append(f'{" " * 5}{text}')
+
+        if len(other_subgroup_timetable):
+            text = str(_("Пары у другой подгруппы:"))
+            text_list.append(f'\n{" " * 5}{text}')
+            text_list.append('\n'.join(other_subgroup_timetable))
 
         now += timedelta(days=1)
     return '\n'.join(text_list)

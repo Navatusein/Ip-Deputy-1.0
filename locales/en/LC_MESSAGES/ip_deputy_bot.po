@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-22 19:00+0300\n"
-"PO-Revision-Date: 2022-04-22 17:54+0300\n"
+"POT-Creation-Date: 2022-04-22 21:24+0300\n"
+"PO-Revision-Date: 2022-04-22 21:25+0300\n"
 "Last-Translator: \n"
-"Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: tgbot/handlers/admin_menu.py:33
 msgid "Отправьте файл с расписанием"
@@ -123,7 +124,7 @@ msgstr "Notification sent successfully 👍"
 #: tgbot/handlers/information_menu.py:56 tgbot/handlers/information_menu.py:94
 #: tgbot/handlers/information_menu.py:102
 #: tgbot/handlers/information_menu.py:137 tgbot/handlers/links_menu.py:29
-#: tgbot/handlers/links_menu.py:43 tgbot/handlers/links_menu.py:58
+#: tgbot/handlers/links_menu.py:43 tgbot/handlers/links_menu.py:59
 #: tgbot/handlers/settings_menu.py:31 tgbot/handlers/submission_menu.py:74
 #: tgbot/handlers/submission_menu.py:84 tgbot/handlers/submission_menu.py:132
 #: tgbot/handlers/submission_menu.py:135 tgbot/handlers/submission_menu.py:140
@@ -179,44 +180,44 @@ msgid "Введите дополнительную информацию 👇"
 msgstr "Enter additional information 👇"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
-#: tgbot/handlers/timetable_menu.py:135
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:83
+#: tgbot/handlers/timetable_menu.py:160
 msgid "Понедельник"
 msgstr "Monday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
-#: tgbot/handlers/timetable_menu.py:135
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:83
+#: tgbot/handlers/timetable_menu.py:160
 msgid "Вторник"
 msgstr "Tuesday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
-#: tgbot/handlers/timetable_menu.py:135
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:83
+#: tgbot/handlers/timetable_menu.py:160
 msgid "Среда"
 msgstr "Wednesday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
-#: tgbot/handlers/timetable_menu.py:135
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:83
+#: tgbot/handlers/timetable_menu.py:160
 msgid "Четверг"
 msgstr "Thursday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
-#: tgbot/handlers/timetable_menu.py:135
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:83
+#: tgbot/handlers/timetable_menu.py:160
 msgid "Пятница"
 msgstr "Friday"
 
 #: tgbot/handlers/admin_menu.py:367 tgbot/handlers/admin_menu.py:459
-#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:71
-#: tgbot/handlers/timetable_menu.py:136
+#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:84
+#: tgbot/handlers/timetable_menu.py:161
 msgid "Суббота"
 msgstr "Saturday"
 
 #: tgbot/handlers/admin_menu.py:367 tgbot/handlers/admin_menu.py:459
-#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:71
-#: tgbot/handlers/timetable_menu.py:136
+#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:84
+#: tgbot/handlers/timetable_menu.py:161
 msgid "Воскресенье"
 msgstr "Sunday"
 
@@ -346,7 +347,7 @@ msgstr "🧑‍🎓 Students"
 msgid "📖 Предметы"
 msgstr "📖 Subjects"
 
-#: tgbot/handlers/links_menu.py:36 tgbot/handlers/main_menu.py:56
+#: tgbot/handlers/links_menu.py:38 tgbot/handlers/main_menu.py:56
 #: tgbot/handlers/main_menu.py:81 tgbot/handlers/main_menu.py:82
 #: tgbot/keyboards/reply.py:72 tgbot/keyboards/reply.py:111
 #: tgbot/keyboards/reply.py:129 tgbot/keyboards/reply.py:144
@@ -497,47 +498,51 @@ msgstr "Schedule for today:"
 msgid "Расписание на завтра:"
 msgstr "Schedule for tomorrow:"
 
-#: tgbot/handlers/timetable_menu.py:59
+#: tgbot/handlers/timetable_menu.py:65
 msgid "Пар нету, отдыхай 👍"
 msgstr "No couples, just rest 👍"
 
-#: tgbot/handlers/timetable_menu.py:78
+#: tgbot/handlers/timetable_menu.py:68 tgbot/handlers/timetable_menu.py:132
+msgid "Пары у другой подгруппы:"
+msgstr "Couples in another subgroup:"
+
+#: tgbot/handlers/timetable_menu.py:91
 msgid "Расписание на эту неделю:"
 msgstr "Schedule for this week:"
 
-#: tgbot/handlers/timetable_menu.py:80
+#: tgbot/handlers/timetable_menu.py:93
 msgid "Расписание на следующую неделю:"
 msgstr "Schedule for next week:"
 
-#: tgbot/handlers/timetable_menu.py:108
+#: tgbot/handlers/timetable_menu.py:128
 msgid "Пар нету"
 msgstr "No couples"
 
-#: tgbot/handlers/timetable_menu.py:140
+#: tgbot/handlers/timetable_menu.py:165
 msgid "Расписание:"
 msgstr "Schedule:"
 
-#: tgbot/handlers/timetable_menu.py:152
+#: tgbot/handlers/timetable_menu.py:177
 msgid "Пара"
 msgstr "Couple"
 
-#: tgbot/handlers/timetable_menu.py:162 tgbot/keyboards/reply.py:114
+#: tgbot/handlers/timetable_menu.py:187 tgbot/keyboards/reply.py:114
 msgid "🕐 На сегодня"
 msgstr "🕐 For today"
 
-#: tgbot/handlers/timetable_menu.py:163 tgbot/keyboards/reply.py:114
+#: tgbot/handlers/timetable_menu.py:188 tgbot/keyboards/reply.py:114
 msgid "🕑 На завтра"
 msgstr "🕑 For tomorrow"
 
-#: tgbot/handlers/timetable_menu.py:164 tgbot/keyboards/reply.py:117
+#: tgbot/handlers/timetable_menu.py:189 tgbot/keyboards/reply.py:117
 msgid "🕒 На эту неделю"
 msgstr "🕒 For this week"
 
-#: tgbot/handlers/timetable_menu.py:165 tgbot/keyboards/reply.py:117
+#: tgbot/handlers/timetable_menu.py:190 tgbot/keyboards/reply.py:117
 msgid "🕓 На следующею неделю"
 msgstr "🕓 For next week"
 
-#: tgbot/handlers/timetable_menu.py:166 tgbot/keyboards/reply.py:120
+#: tgbot/handlers/timetable_menu.py:191 tgbot/keyboards/reply.py:120
 msgid "🗓 Всё"
 msgstr "🗓 All"
 
@@ -552,4 +557,3 @@ msgstr "Welcome, {firstname} {lastname}"
 #: tgbot/keyboards/reply.py:11
 msgid "🔐 Авторизоваться"
 msgstr "🔐 Login"
-
