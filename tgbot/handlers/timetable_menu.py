@@ -69,8 +69,6 @@ def get_timetable_day(today: bool, message: types.Message):
         text_list.append(f'\n{text}')
         text_list.append('\n'.join(other_subgroup_timetable))
 
-    print(text_list)
-
     return '\n'.join(text_list)
 
 
