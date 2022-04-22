@@ -37,7 +37,7 @@ async def links_menu_handler(message: types.Message, state: FSMContext):
         if position == '/':
             menu = [[KeyboardButton(_('📋 Главное меню'))]]
     elif parsed_message[0] == '🌐':
-        link = session.query(Link).where(Link.Name == parsed_message[1]).first()
+        link = session.query(Link).where(Link.Name == ' '.join(parsed_message[1:])).first()
 
         if link is None:
             await message.answer(text=_('Некорректный ввод!'))
