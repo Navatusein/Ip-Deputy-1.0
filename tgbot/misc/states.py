@@ -64,3 +64,7 @@ class StateRemoveCouple(StatesGroup):
     SelectSubject = State()
     SelectDate = State()
     Confirmation = State()
+
+
+class StateLinksMenu(StatesGroup):
+    Active = State()

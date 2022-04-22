@@ -7,17 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-10 00:23+0300\n"
-"PO-Revision-Date: 2022-04-10 00:28+0300\n"
+"POT-Creation-Date: 2022-04-22 19:00+0300\n"
+"PO-Revision-Date: 2022-04-22 17:54+0300\n"
 "Last-Translator: \n"
-"Language-Team: en <LL@li.org>\n"
 "Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.9.1\n"
-"X-Generator: Poedit 3.0.1\n"
 
 #: tgbot/handlers/admin_menu.py:33
 msgid "Отправьте файл с расписанием"
@@ -49,7 +48,7 @@ msgstr "Write a message 👇"
 
 #: tgbot/handlers/admin_menu.py:122 tgbot/handlers/admin_menu.py:133
 #: tgbot/handlers/admin_menu.py:135 tgbot/handlers/admin_menu.py:150
-#: tgbot/keyboards/reply.py:180
+#: tgbot/keyboards/reply.py:186
 msgid "🔔 Уведомление: Вкл"
 msgstr "🔔 Notice: On"
 
@@ -61,14 +60,15 @@ msgstr "🔔 Notice: On"
 #: tgbot/handlers/admin_menu.py:558 tgbot/handlers/admin_menu.py:631
 #: tgbot/handlers/admin_menu.py:722 tgbot/handlers/information_menu.py:32
 #: tgbot/handlers/information_menu.py:77 tgbot/handlers/information_menu.py:117
-#: tgbot/handlers/information_menu.py:183 tgbot/handlers/main_menu.py:52
-#: tgbot/handlers/main_menu.py:53 tgbot/handlers/settings_menu.py:54
+#: tgbot/handlers/information_menu.py:183 tgbot/handlers/links_menu.py:32
+#: tgbot/handlers/links_menu.py:34 tgbot/handlers/main_menu.py:84
+#: tgbot/handlers/main_menu.py:85 tgbot/handlers/settings_menu.py:54
 #: tgbot/handlers/submission_menu.py:41 tgbot/handlers/submission_menu.py:96
 #: tgbot/handlers/submission_menu.py:202 tgbot/handlers/submission_menu.py:295
-#: tgbot/handlers/submission_menu.py:437 tgbot/keyboards/reply.py:54
-#: tgbot/keyboards/reply.py:81 tgbot/keyboards/reply.py:93
-#: tgbot/keyboards/reply.py:165 tgbot/keyboards/reply.py:177
-#: tgbot/keyboards/reply.py:189
+#: tgbot/handlers/submission_menu.py:437 tgbot/keyboards/reply.py:60
+#: tgbot/keyboards/reply.py:87 tgbot/keyboards/reply.py:99
+#: tgbot/keyboards/reply.py:171 tgbot/keyboards/reply.py:183
+#: tgbot/keyboards/reply.py:195
 msgid "↩ Назад"
 msgstr "↩ Back"
 
@@ -88,7 +88,7 @@ msgstr ""
 #: tgbot/handlers/admin_menu.py:163 tgbot/handlers/admin_menu.py:417
 #: tgbot/handlers/admin_menu.py:684 tgbot/handlers/submission_menu.py:157
 #: tgbot/handlers/submission_menu.py:265 tgbot/handlers/submission_menu.py:401
-#: tgbot/keyboards/reply.py:57
+#: tgbot/keyboards/reply.py:63
 msgid "❎ Отменить"
 msgstr "❎ Cancel"
 
@@ -99,7 +99,7 @@ msgstr "Cancel"
 #: tgbot/handlers/admin_menu.py:168 tgbot/handlers/admin_menu.py:421
 #: tgbot/handlers/admin_menu.py:688 tgbot/handlers/submission_menu.py:161
 #: tgbot/handlers/submission_menu.py:269 tgbot/handlers/submission_menu.py:405
-#: tgbot/keyboards/reply.py:57
+#: tgbot/keyboards/reply.py:63
 msgid "✅ Подтвердить"
 msgstr "✅ Confirm"
 
@@ -122,14 +122,15 @@ msgstr "Notification sent successfully 👍"
 #: tgbot/handlers/admin_menu.py:711 tgbot/handlers/information_menu.py:49
 #: tgbot/handlers/information_menu.py:56 tgbot/handlers/information_menu.py:94
 #: tgbot/handlers/information_menu.py:102
-#: tgbot/handlers/information_menu.py:137 tgbot/handlers/settings_menu.py:31
-#: tgbot/handlers/submission_menu.py:74 tgbot/handlers/submission_menu.py:84
-#: tgbot/handlers/submission_menu.py:132 tgbot/handlers/submission_menu.py:135
-#: tgbot/handlers/submission_menu.py:140 tgbot/handlers/submission_menu.py:190
-#: tgbot/handlers/submission_menu.py:236 tgbot/handlers/submission_menu.py:257
-#: tgbot/handlers/submission_menu.py:284 tgbot/handlers/submission_menu.py:329
-#: tgbot/handlers/submission_menu.py:344 tgbot/handlers/submission_menu.py:394
-#: tgbot/handlers/submission_menu.py:425
+#: tgbot/handlers/information_menu.py:137 tgbot/handlers/links_menu.py:29
+#: tgbot/handlers/links_menu.py:43 tgbot/handlers/links_menu.py:58
+#: tgbot/handlers/settings_menu.py:31 tgbot/handlers/submission_menu.py:74
+#: tgbot/handlers/submission_menu.py:84 tgbot/handlers/submission_menu.py:132
+#: tgbot/handlers/submission_menu.py:135 tgbot/handlers/submission_menu.py:140
+#: tgbot/handlers/submission_menu.py:190 tgbot/handlers/submission_menu.py:236
+#: tgbot/handlers/submission_menu.py:257 tgbot/handlers/submission_menu.py:284
+#: tgbot/handlers/submission_menu.py:329 tgbot/handlers/submission_menu.py:344
+#: tgbot/handlers/submission_menu.py:394 tgbot/handlers/submission_menu.py:425
 msgid "Некорректный ввод!"
 msgstr "Invalid input!"
 
@@ -153,15 +154,15 @@ msgstr "Enter the date of the lesson in the format dd.mm.yyyy 👇"
 msgid "Ввёденная дата должна быть больше сегодняшней!"
 msgstr "The entered date must be greater than today!"
 
-#: tgbot/handlers/admin_menu.py:323
+#: tgbot/handlers/admin_menu.py:323 tgbot/handlers/admin_menu.py:341
 msgid "Подгруппа 1"
 msgstr "Subgroup 1"
 
-#: tgbot/handlers/admin_menu.py:323
+#: tgbot/handlers/admin_menu.py:323 tgbot/handlers/admin_menu.py:343
 msgid "Подгруппа 2"
 msgstr "Subgroup 2"
 
-#: tgbot/handlers/admin_menu.py:324
+#: tgbot/handlers/admin_menu.py:324 tgbot/handlers/admin_menu.py:345
 msgid "Вся группа"
 msgstr "Whole group"
 
@@ -178,44 +179,44 @@ msgid "Введите дополнительную информацию 👇"
 msgstr "Enter additional information 👇"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:29
-#: tgbot/handlers/timetable_menu.py:74 tgbot/handlers/timetable_menu.py:139
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
+#: tgbot/handlers/timetable_menu.py:135
 msgid "Понедельник"
 msgstr "Monday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:29
-#: tgbot/handlers/timetable_menu.py:74 tgbot/handlers/timetable_menu.py:139
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
+#: tgbot/handlers/timetable_menu.py:135
 msgid "Вторник"
 msgstr "Tuesday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:29
-#: tgbot/handlers/timetable_menu.py:74 tgbot/handlers/timetable_menu.py:139
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
+#: tgbot/handlers/timetable_menu.py:135
 msgid "Среда"
 msgstr "Wednesday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:29
-#: tgbot/handlers/timetable_menu.py:74 tgbot/handlers/timetable_menu.py:139
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
+#: tgbot/handlers/timetable_menu.py:135
 msgid "Четверг"
 msgstr "Thursday"
 
 #: tgbot/handlers/admin_menu.py:366 tgbot/handlers/admin_menu.py:458
-#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:29
-#: tgbot/handlers/timetable_menu.py:74 tgbot/handlers/timetable_menu.py:139
+#: tgbot/handlers/admin_menu.py:479 tgbot/handlers/timetable_menu.py:70
+#: tgbot/handlers/timetable_menu.py:135
 msgid "Пятница"
 msgstr "Friday"
 
 #: tgbot/handlers/admin_menu.py:367 tgbot/handlers/admin_menu.py:459
-#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:30
-#: tgbot/handlers/timetable_menu.py:75 tgbot/handlers/timetable_menu.py:140
+#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:71
+#: tgbot/handlers/timetable_menu.py:136
 msgid "Суббота"
 msgstr "Saturday"
 
 #: tgbot/handlers/admin_menu.py:367 tgbot/handlers/admin_menu.py:459
-#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:30
-#: tgbot/handlers/timetable_menu.py:75 tgbot/handlers/timetable_menu.py:140
+#: tgbot/handlers/admin_menu.py:480 tgbot/handlers/timetable_menu.py:71
+#: tgbot/handlers/timetable_menu.py:136
 msgid "Воскресенье"
 msgstr "Sunday"
 
@@ -273,19 +274,19 @@ msgstr "Choose a date 👇"
 msgid "Вы успешно удалили пару 👍"
 msgstr "You have successfully deleted the meeting 👍"
 
-#: tgbot/handlers/admin_menu.py:740 tgbot/keyboards/reply.py:126
+#: tgbot/handlers/admin_menu.py:740 tgbot/keyboards/reply.py:132
 msgid "📥 Расписание"
 msgstr "📥 Schedule"
 
-#: tgbot/handlers/admin_menu.py:744 tgbot/keyboards/reply.py:126
+#: tgbot/handlers/admin_menu.py:744 tgbot/keyboards/reply.py:132
 msgid "📨 Уведомление"
 msgstr "📨 Notification"
 
-#: tgbot/handlers/admin_menu.py:748 tgbot/keyboards/reply.py:129
+#: tgbot/handlers/admin_menu.py:748 tgbot/keyboards/reply.py:135
 msgid "➕ Добавить пару"
 msgstr "➕ Add meeting"
 
-#: tgbot/handlers/admin_menu.py:757 tgbot/keyboards/reply.py:129
+#: tgbot/handlers/admin_menu.py:757 tgbot/keyboards/reply.py:135
 msgid "➖ Удалить пару"
 msgstr "➖ Delete meeting"
 
@@ -333,17 +334,25 @@ msgstr "Laboratory works: {value}"
 msgid "Практических работ: {value}"
 msgstr "Practical works: {value}"
 
-#: tgbot/handlers/information_menu.py:188 tgbot/keyboards/reply.py:141
+#: tgbot/handlers/information_menu.py:188 tgbot/keyboards/reply.py:147
 msgid "🧑🏻‍🏫 Преподаватели"
 msgstr "🧑🏻‍🏫 Teachers"
 
-#: tgbot/handlers/information_menu.py:191 tgbot/keyboards/reply.py:141
+#: tgbot/handlers/information_menu.py:191 tgbot/keyboards/reply.py:147
 msgid "🧑‍🎓 Студенты"
 msgstr "🧑‍🎓 Students"
 
-#: tgbot/handlers/information_menu.py:194 tgbot/keyboards/reply.py:144
+#: tgbot/handlers/information_menu.py:194 tgbot/keyboards/reply.py:150
 msgid "📖 Предметы"
 msgstr "📖 Subjects"
+
+#: tgbot/handlers/links_menu.py:36 tgbot/handlers/main_menu.py:56
+#: tgbot/handlers/main_menu.py:81 tgbot/handlers/main_menu.py:82
+#: tgbot/keyboards/reply.py:72 tgbot/keyboards/reply.py:111
+#: tgbot/keyboards/reply.py:129 tgbot/keyboards/reply.py:144
+#: tgbot/keyboards/reply.py:159
+msgid "📋 Главное меню"
+msgstr "📋 Main menu"
 
 #: tgbot/handlers/login_menu.py:29
 msgid "Это не ваш контакт!"
@@ -361,52 +370,50 @@ msgstr "Authorization was successful!"
 msgid "Нажмите на кнопку авторизоваться!"
 msgstr "Click on the login button!"
 
-#: tgbot/handlers/main_menu.py:36
+#: tgbot/handlers/main_menu.py:42
 msgid "Бодя лентяй ещё не сделал 🤪"
 msgstr "Бодя lazy has not done yet 🤪"
 
-#: tgbot/handlers/main_menu.py:48
+#: tgbot/handlers/main_menu.py:77
 msgid "Недостаточно прав!"
 msgstr "Not Enough Rights!"
 
-#: tgbot/handlers/main_menu.py:52 tgbot/handlers/main_menu.py:53
-#: tgbot/keyboards/reply.py:66 tgbot/keyboards/reply.py:105
-#: tgbot/keyboards/reply.py:123 tgbot/keyboards/reply.py:138
-#: tgbot/keyboards/reply.py:153
-msgid "📋 Главное меню"
-msgstr "📋 Main menu"
-
-#: tgbot/handlers/main_menu.py:55 tgbot/keyboards/reply.py:20
-#: tgbot/keyboards/reply.py:35
+#: tgbot/handlers/main_menu.py:87 tgbot/keyboards/reply.py:20
+#: tgbot/keyboards/reply.py:38
 msgid "🧾 Сдача"
 msgstr "🧾 Submission"
 
-#: tgbot/handlers/main_menu.py:56 tgbot/keyboards/reply.py:20
-#: tgbot/keyboards/reply.py:35
+#: tgbot/handlers/main_menu.py:88 tgbot/keyboards/reply.py:20
+#: tgbot/keyboards/reply.py:38
 msgid "🗓 Расписание"
 msgstr "🗓 Schedule"
 
-#: tgbot/handlers/main_menu.py:57 tgbot/keyboards/reply.py:26
-#: tgbot/keyboards/reply.py:41
+#: tgbot/handlers/main_menu.py:89 tgbot/keyboards/reply.py:29
+#: tgbot/keyboards/reply.py:47
 msgid "⚙ Настройки"
 msgstr "⚙ Settings"
 
-#: tgbot/handlers/main_menu.py:58 tgbot/keyboards/reply.py:23
-#: tgbot/keyboards/reply.py:38
+#: tgbot/handlers/main_menu.py:90 tgbot/keyboards/reply.py:26
+#: tgbot/keyboards/reply.py:44
+msgid "🌐 Ссылки"
+msgstr "🌐 Links"
+
+#: tgbot/handlers/main_menu.py:91 tgbot/keyboards/reply.py:23
+#: tgbot/keyboards/reply.py:41
 msgid "⁉ FAQ"
 msgstr "⁉ FAQ"
 
-#: tgbot/handlers/main_menu.py:59 tgbot/keyboards/reply.py:23
-#: tgbot/keyboards/reply.py:38
+#: tgbot/handlers/main_menu.py:92 tgbot/keyboards/reply.py:23
+#: tgbot/keyboards/reply.py:41
 msgid "🗒 Информация"
 msgstr "🗒 Information"
 
-#: tgbot/handlers/main_menu.py:61 tgbot/handlers/main_menu.py:62
-#: tgbot/keyboards/reply.py:44
+#: tgbot/handlers/main_menu.py:94 tgbot/handlers/main_menu.py:95
+#: tgbot/keyboards/reply.py:50
 msgid "👑 Админка"
 msgstr "👑 Admin"
 
-#: tgbot/handlers/settings_menu.py:57 tgbot/keyboards/reply.py:156
+#: tgbot/handlers/settings_menu.py:57 tgbot/keyboards/reply.py:162
 msgid "🇷🇺 Язык"
 msgstr "🇬🇧 Language"
 
@@ -438,7 +445,7 @@ msgstr "You have successfully enrolled 👍"
 msgid "Ваши записи:"
 msgstr "Your entries:"
 
-#: tgbot/handlers/submission_menu.py:249 tgbot/keyboards/reply.py:84
+#: tgbot/handlers/submission_menu.py:249 tgbot/keyboards/reply.py:90
 msgid "❌ Снять заявку"
 msgstr "❌ Cancel application"
 
@@ -458,7 +465,7 @@ msgstr "Application has been successfully deleted 👍"
 msgid "На сдачу не кто не записался"
 msgstr "No one signed up"
 
-#: tgbot/handlers/submission_menu.py:390 tgbot/keyboards/reply.py:96
+#: tgbot/handlers/submission_menu.py:390 tgbot/keyboards/reply.py:102
 msgid "❌ Очистить список"
 msgstr "❌ Clear the list"
 
@@ -470,67 +477,67 @@ msgstr "Are you sure you want to clear the list?"
 msgid "Список успешно очищен 👍"
 msgstr "List cleared successfully 👍"
 
-#: tgbot/handlers/submission_menu.py:448 tgbot/keyboards/reply.py:69
+#: tgbot/handlers/submission_menu.py:448 tgbot/keyboards/reply.py:75
 msgid "➕ Записаться"
 msgstr "➕ Sign up"
 
-#: tgbot/handlers/submission_menu.py:453 tgbot/keyboards/reply.py:69
+#: tgbot/handlers/submission_menu.py:453 tgbot/keyboards/reply.py:75
 msgid "🧾 Мои записи"
 msgstr "🧾 My submissions"
 
-#: tgbot/handlers/submission_menu.py:458 tgbot/keyboards/reply.py:72
+#: tgbot/handlers/submission_menu.py:458 tgbot/keyboards/reply.py:78
 msgid "🗳 Получить список"
 msgstr "🗳 Get a list"
 
-#: tgbot/handlers/timetable_menu.py:35
+#: tgbot/handlers/timetable_menu.py:31
 msgid "Расписание на сегодня:"
 msgstr "Schedule for today:"
 
-#: tgbot/handlers/timetable_menu.py:37
+#: tgbot/handlers/timetable_menu.py:33
 msgid "Расписание на завтра:"
 msgstr "Schedule for tomorrow:"
 
-#: tgbot/handlers/timetable_menu.py:63
+#: tgbot/handlers/timetable_menu.py:59
 msgid "Пар нету, отдыхай 👍"
 msgstr "No couples, just rest 👍"
 
-#: tgbot/handlers/timetable_menu.py:82
+#: tgbot/handlers/timetable_menu.py:78
 msgid "Расписание на эту неделю:"
 msgstr "Schedule for this week:"
 
-#: tgbot/handlers/timetable_menu.py:84
+#: tgbot/handlers/timetable_menu.py:80
 msgid "Расписание на следующую неделю:"
 msgstr "Schedule for next week:"
 
-#: tgbot/handlers/timetable_menu.py:112
+#: tgbot/handlers/timetable_menu.py:108
 msgid "Пар нету"
 msgstr "No couples"
 
-#: tgbot/handlers/timetable_menu.py:144
+#: tgbot/handlers/timetable_menu.py:140
 msgid "Расписание:"
 msgstr "Schedule:"
 
-#: tgbot/handlers/timetable_menu.py:156
+#: tgbot/handlers/timetable_menu.py:152
 msgid "Пара"
 msgstr "Couple"
 
-#: tgbot/handlers/timetable_menu.py:166 tgbot/keyboards/reply.py:108
+#: tgbot/handlers/timetable_menu.py:162 tgbot/keyboards/reply.py:114
 msgid "🕐 На сегодня"
 msgstr "🕐 For today"
 
-#: tgbot/handlers/timetable_menu.py:167 tgbot/keyboards/reply.py:108
+#: tgbot/handlers/timetable_menu.py:163 tgbot/keyboards/reply.py:114
 msgid "🕑 На завтра"
 msgstr "🕑 For tomorrow"
 
-#: tgbot/handlers/timetable_menu.py:168 tgbot/keyboards/reply.py:111
+#: tgbot/handlers/timetable_menu.py:164 tgbot/keyboards/reply.py:117
 msgid "🕒 На эту неделю"
 msgstr "🕒 For this week"
 
-#: tgbot/handlers/timetable_menu.py:169 tgbot/keyboards/reply.py:111
+#: tgbot/handlers/timetable_menu.py:165 tgbot/keyboards/reply.py:117
 msgid "🕓 На следующею неделю"
 msgstr "🕓 For next week"
 
-#: tgbot/handlers/timetable_menu.py:170 tgbot/keyboards/reply.py:114
+#: tgbot/handlers/timetable_menu.py:166 tgbot/keyboards/reply.py:120
 msgid "🗓 Всё"
 msgstr "🗓 All"
 
@@ -545,3 +552,4 @@ msgstr "Welcome, {firstname} {lastname}"
 #: tgbot/keyboards/reply.py:11
 msgid "🔐 Авторизоваться"
 msgstr "🔐 Login"
+

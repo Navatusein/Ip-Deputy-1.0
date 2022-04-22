@@ -10,6 +10,8 @@ from tgbot.models.couple import Couple
 from tgbot.models.timetable import Timetable
 from tgbot.models.timetable_date import TimetableDate
 from tgbot.models.teacher import Teacher
+from tgbot.models.links import Link
+from tgbot.models.links_tabs import LinkTab
 
 
 def create_tables(engine):

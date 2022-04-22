@@ -33,6 +33,7 @@ from tgbot.handlers.submission_menu import register_submission_menu
 from tgbot.handlers.faq_menu import register_faq_menu
 from tgbot.handlers.timetable_menu import register_timetable_menu
 from tgbot.handlers.information_menu import register_information_menu
+from tgbot.handlers.links_menu import register_links_menu
 from tgbot.handlers.echo import register_echo
 
 # alembic revision --autogenerate -m ''
@@ -64,6 +65,7 @@ def register_all_handlers(dp):
     register_faq_menu(dp)
     register_timetable_menu(dp)
     register_information_menu(dp)
+    register_links_menu(dp)
     register_echo(dp)
 
 

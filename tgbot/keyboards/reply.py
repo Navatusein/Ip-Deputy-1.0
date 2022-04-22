@@ -22,6 +22,9 @@ main_menu = ReplyKeyboardMarkup(
         [
             KeyboardButton(_('⁉ FAQ')), KeyboardButton(_('🗒 Информация'))
         ],
+[
+            KeyboardButton(_('🌐 Ссылки'))
+        ],
         [
             KeyboardButton(_('⚙ Настройки'))
         ]
@@ -36,6 +39,9 @@ main_menu_admin = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton(_('⁉ FAQ')), KeyboardButton(_('🗒 Информация'))
+        ],
+        [
+            KeyboardButton(_('🌐 Ссылки'))
         ],
         [
             KeyboardButton(_('⚙ Настройки'))
