@@ -20,6 +20,7 @@ from tgbot.services.database.db import create_connection
 from tgbot.services.database.create import create_tables
 
 from tgbot.middlewares.localization import i18n
+from tgbot.middlewares.last_activity import LastActivity
 
 from tgbot.filters.admin import AdminFilter
 from tgbot.filters.logined import LoginFilter
@@ -47,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 def register_all_middlewares(dp):
     dp.setup_middleware(i18n)
-    pass
+    dp.setup_middleware(LastActivity())
 
 
 def register_all_filters(dp):
