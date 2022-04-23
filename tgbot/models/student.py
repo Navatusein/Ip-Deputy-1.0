@@ -20,7 +20,7 @@ class Student(Base):
     Birthday = Column(Date(), nullable=False)
     LastCongratulations = Column(Date(), nullable=True, default="2000-01-01")
     Subgroup = Column(Integer(), nullable=False)
-    LastActivity = Column(DateTime(), nullable=True, default="2000-01-01")
+    LastActivity = Column(DateTime(), nullable=True)
 
     User = relationship('User', back_populates="Student", uselist=False)
 

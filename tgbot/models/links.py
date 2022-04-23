@@ -12,4 +12,4 @@ class Link(Base):
     Path = Column(String(), nullable=False)
     Name = Column(String(), unique=True, nullable=False)
     Url = Column(String(), unique=True, nullable=False)
-    Description = Column(String())
+    Description = Column(String(), nullable=True)
