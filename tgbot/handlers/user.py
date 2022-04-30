@@ -1,6 +1,7 @@
 import logging
 
 from aiogram import types, Dispatcher
+from aiogram.dispatcher import FSMContext
 
 from sqlalchemy.orm import Session
 
@@ -17,7 +18,7 @@ from tgbot.middlewares.localization import i18n
 _ = i18n.lazy_gettext
 
 
-async def user_start(message: types.Message):
+async def user_start(message: types.Message, state: FSMContext):
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
 
@@ -33,6 +34,8 @@ async def user_start(message: types.Message):
                                                                                        lastname=student.Lastname), reply_markup=main_menu)
         logger.info(f"id: {user_id} user: {message.from_user.username} authorized successfully.")
 
+        await state.finish()
+        
 
 async def user_not_logined(message: types.Message):
     await message.reply(text=_('Необходимо авторизоваться!'), reply_markup=login_menu)

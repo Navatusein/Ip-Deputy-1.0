@@ -74,7 +74,7 @@ def main():
 
     if requirements_update:
         print('Update requirements')
-        os.system(f'pip install -r requirements.txt')
+        os.system(f'pip3.10 install -r requirements.txt')
 
     if database_update:
         os.system(f"alembic revision --autogenerate -m '{datetime.datetime.now().date()}'")

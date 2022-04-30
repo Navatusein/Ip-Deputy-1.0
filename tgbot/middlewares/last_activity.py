@@ -21,6 +21,6 @@ class LastActivity(BaseMiddleware):
 
         user = session.query(User).where(User.TelegramId == user_id).first()
 
-        user.Student.LastActivity = datetime.now()
-
-        session.commit()
+        if user:
+            user.Student.LastActivity = datetime.now()
+            session.commit()
