@@ -8,4 +8,4 @@ ADMINS=admins-list
 
 USE_REDIS=False
 
-DB_STRING=sqlite:///database.db
+DB_STRING=db-string

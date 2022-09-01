@@ -25,4 +25,4 @@ class Localization(I18nMiddleware):
         return language
 
 
-i18n = Localization('ip-deputy-bot', 'bot\locales')
+i18n = Localization('ip-deputy-bot', 'locales')

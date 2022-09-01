@@ -1,6 +1,8 @@
 import asyncio
 import logging
 
+from os import path, makedirs
+
 from datetime import datetime
 
 from aiogram import Bot, Dispatcher
@@ -86,7 +88,10 @@ async def main():
         encoding='UTF-8'
     )
 
-    handler = logging.FileHandler(f'bot\logs\log.log')
+    if not path.exists('logs'):
+        makedirs('logs')
+    
+    handler = logging.FileHandler(f'logs\log.log')
     handler.setFormatter(logging.Formatter(log_format))
     logger.addHandler(handler)
 

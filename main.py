@@ -12,10 +12,10 @@ from zipfile import ZipFile
 def check_new_version(url: str):
     version_request = requests.get(url)
 
-    if not os.path.exists('version.json'):
+    if not os.path.exists('version'):
         return True, True, True
 
-    with open(file='version.json', mode='r') as version_file:
+    with open(file='version', mode='r') as version_file:
         version_file_data = json.load(version_file)
         version_request_data = json.loads(version_request.text)
 
@@ -63,7 +63,7 @@ def update():
 
 def main():
     code_update, requirements_update, database_update = check_new_version("https://raw.githubusercontent.com/"
-                                                                          "Navatusein/IP-Deputy/master/version.json")
+                                                                          "Navatusein/IP-Deputy/master/version")
 
     if not code_update and not requirements_update and not database_update:
         os.system('python3')
