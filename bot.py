@@ -86,7 +86,7 @@ async def main():
         encoding='UTF-8'
     )
 
-    handler = logging.FileHandler(f'logs/log.log')
+    handler = logging.FileHandler(f'bot\logs\log.log')
     handler.setFormatter(logging.Formatter(log_format))
     logger.addHandler(handler)
 

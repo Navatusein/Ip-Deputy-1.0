@@ -7,6 +7,8 @@ import requests
 from zipfile import ZipFile
 
 
+
+
 def check_new_version(url: str):
     version_request = requests.get(url)
 
@@ -64,7 +66,7 @@ def main():
                                                                           "Navatusein/IP-Deputy/master/version.json")
 
     if not code_update and not requirements_update and not database_update:
-        print('Is no new version')
+        os.system('python3')
         return
 
     if code_update:
@@ -74,7 +76,7 @@ def main():
 
     if requirements_update:
         print('Update requirements')
-        os.system(f'pip3.10 install -r requirements.txt')
+        os.system(f'pip install -r requirements.txt')
 
     if database_update:
         os.system(f"alembic revision --autogenerate -m '{datetime.datetime.now().date()}'")

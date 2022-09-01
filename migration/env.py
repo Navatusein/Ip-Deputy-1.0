@@ -7,6 +7,8 @@ from alembic import context
 
 from tgbot.services.database.db import Base
 
+from tgbot.config import load_config
+
 from tgbot.models.student import Student
 from tgbot.models.subject import Subject
 from tgbot.models.subject_type import SubjectType
@@ -53,7 +55,10 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    config = load_config(".env")
+    
+    url = config.db.connection_string
+    
     context.configure(
         url=url,
         target_metadata=target_metadata,
