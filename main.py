@@ -26,10 +26,10 @@ def check_new_version(url: str):
     requirements_update = version_file_data['RequirementsUpdate'] != version_request_data['RequirementsUpdate']
     database_update = version_file_data['DatabaseUpdate'] != version_request_data['DatabaseUpdate']
 
-    logger.info(f"Now version is {version_file_data['CodeUpdate']}.{version_file_data['RequirementsUpdate']}"
+    logger.info(f"Now version is {version_file_data['CodeUpdate']}.{version_file_data['RequirementsUpdate']}."
                 f"{version_file_data['DatabaseUpdate']}")
 
-    logger.info(f"Latest version is {version_request_data['CodeUpdate']}.{version_request_data['RequirementsUpdate']}"
+    logger.info(f"Latest version is {version_request_data['CodeUpdate']}.{version_request_data['RequirementsUpdate']}."
                 f"{version_request_data['DatabaseUpdate']}")
 
     return code_update, requirements_update, database_update
