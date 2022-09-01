@@ -1,6 +1,7 @@
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 from dataclasses import dataclass
-
-from environs import Env
 
 
 @dataclass
@@ -10,10 +11,8 @@ class DbConfig:
 
 @dataclass
 class TgBot:
-    name: str
     token: str
     admin_ids: list
-    use_redis: bool
 
 
 @dataclass
@@ -22,18 +21,15 @@ class Config:
     tg_bot: TgBot
 
 
-def load_config(path: str = None):
-    env = Env()
-    env.read_env(path)
+def load_config():
+    # load_dotenv(dotenv_path='E:\Projects\IpDeputyBot\.env')
 
     return Config(
         tg_bot=TgBot(
-            name=env.str("BOT_NAME"),
-            token=env.str("BOT_TOKEN"),
-            admin_ids=list(map(int, env.list("ADMINS"))),
-            use_redis=env.bool("USE_REDIS"),
+            token=os.environ.get("BOT_TOKEN"),
+            admin_ids=list(map(int, os.environ.get("ADMINS").split(','))),
         ),
         db=DbConfig(
-            connection_string=env.str("DB_STRING"),
+            connection_string=os.environ.get("DB_STRING"),
         ),
     )

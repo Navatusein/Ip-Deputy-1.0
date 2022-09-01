@@ -3,10 +3,11 @@ import json
 import os
 import shutil
 import requests
+import logging
 
 from zipfile import ZipFile
 
-
+logger = logging.getLogger(__name__)
 
 
 def check_new_version(url: str):
@@ -62,20 +63,28 @@ def update():
 
 
 def main():
+    log_format = u'%(levelname)s %(asctime)s [%(filename)s %(lineno)s] [%(module)s.%(funcName)s] %(message)s'
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format=log_format,
+        encoding='UTF-8'
+    )
+
     code_update, requirements_update, database_update = check_new_version("https://raw.githubusercontent.com/"
                                                                           "Navatusein/IP-Deputy/master/version")
 
     if not code_update and not requirements_update and not database_update:
-        os.system('python3')
+        os.system('python3 bot.py')
         return
 
     if code_update:
-        print('Update code')
+        logger.info('Update code')
         download_latest_version("https://github.com/Navatusein/IP-Deputy/archive/refs/heads/master.zip")
         update()
 
     if requirements_update:
-        print('Update requirements')
+        logger.info('Update requirements')
         os.system(f'pip install -r requirements.txt')
 
     if database_update:
@@ -85,7 +94,7 @@ def main():
         # alembic revision --autogenerate -m ''
         # alembic upgrade head
 
-    print('Updating finished!')
+    logger.info('Updating finished!')
 
 
 if __name__ == '__main__':
