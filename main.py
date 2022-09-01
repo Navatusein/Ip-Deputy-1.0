@@ -5,6 +5,8 @@ import shutil
 import requests
 import logging
 
+from os import path, makedirs
+
 from zipfile import ZipFile
 
 logger = logging.getLogger(__name__)
@@ -24,11 +26,21 @@ def check_new_version(url: str):
     requirements_update = version_file_data['RequirementsUpdate'] != version_request_data['RequirementsUpdate']
     database_update = version_file_data['DatabaseUpdate'] != version_request_data['DatabaseUpdate']
 
+    logger.info(f"Now version is {version_file_data['CodeUpdate']}.{version_file_data['RequirementsUpdate']}"
+                f"{version_file_data['DatabaseUpdate']}")
+
+    logger.info(f"Latest version is {version_request_data['CodeUpdate']}.{version_request_data['RequirementsUpdate']}"
+                f"{version_request_data['DatabaseUpdate']}")
+
     return code_update, requirements_update, database_update
 
 
 def download_latest_version(url: str):
     latest_version_request = requests.get(url, allow_redirects=True)
+
+    if not path.exists('files'):
+        makedirs('files')
+
     open('files/latest_version.zip', 'wb').write(latest_version_request.content)
 
 
@@ -39,8 +51,8 @@ def copy(source: str, destination: str):
             os.makedirs(root)
 
         for file in files:
-            path = root.replace(source, '').lstrip(os.sep)
-            destination_path = os.path.join(destination, path)
+            path_file = root.replace(source, '').lstrip(os.sep)
+            destination_path = os.path.join(destination, path_file)
 
             if not os.path.isdir(destination_path):
                 os.makedirs(destination_path)
@@ -55,11 +67,11 @@ def update():
 
     copy(f'files/{file_name}/', f'{os.getcwd()}')
 
-    path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'files/latest_version.zip')
-    os.remove(path)
+    path_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'files/latest_version.zip')
+    os.remove(path_file)
 
-    path = os.path.join(os.path.abspath(os.path.dirname(__file__)), f'files/{file_name}')
-    shutil.rmtree(path)
+    path_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), f'files/{file_name}')
+    shutil.rmtree(path_file)
 
 
 def main():
@@ -70,6 +82,8 @@ def main():
         format=log_format,
         encoding='UTF-8'
     )
+
+    logger.info('Checking for update.')
 
     code_update, requirements_update, database_update = check_new_version("https://raw.githubusercontent.com/"
                                                                           "Navatusein/IP-Deputy/master/version")
@@ -95,6 +109,7 @@ def main():
         # alembic upgrade head
 
     logger.info('Updating finished!')
+    os.system('python3 main.py')
 
 
 if __name__ == '__main__':
