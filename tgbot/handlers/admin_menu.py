@@ -150,7 +150,7 @@ async def notification_message_get(message: types.Message, state: FSMContext):
         disable_notification_text = _('🔔 Уведомление: Вкл')
 
     await message.answer(text=_('💬 {message} \n{disable_notification_text} \n').format(message=message.text,
-                                                                                       disable_notification_text=disable_notification_text),
+                                                                                        disable_notification_text=disable_notification_text),
                          reply_markup=confirmation_menu)
 
     await StateSendNotification.Confirmation.set()
@@ -425,14 +425,25 @@ async def add_timetable_confirmation(message: types.Message, state: FSMContext):
             couple_id = data['couple_id']
             subgroup = data['subgroup']
             additional_information = data['additional_information']
-            date: datetime = data['date']
+            date = data['date']
 
         day_id = date.weekday() + 1
 
-        date_string = f'[{date.strftime("%d.%m.%Y")}]'
+        timetable = session.query(Timetable).filter(Timetable.TypeId == subject_type_id,
+                                                    Timetable.SubjectId == subject_id,
+                                                    Timetable.DayId == day_id,
+                                                    Timetable.Subgroup == subgroup).first()
 
-        timetable = Timetable(TypeId=subject_type_id, SubjectId=subject_id, CoupleId=couple_id, DayId=day_id,
+        if timetable is None:
+            date_string = f'[{date.strftime("%d.%m")}]'
+
+            timetable = Timetable(TypeId=subject_type_id, SubjectId=subject_id, CoupleId=couple_id, DayId=day_id,
                               Subgroup=subgroup, AdditionalInformation=additional_information, DateString=date_string)
+        else:
+            date_string = timetable.DateString.replace("]", "")
+            date_string += f', {date.strftime("%d.%m")}]'
+
+            timetable.DateString = date_string
 
         session.add(timetable)
         session.flush()
@@ -699,7 +710,9 @@ async def remove_timetable_confirmation(message: types.Message, state: FSMContex
 
         logger.info(f'Admin: {user} removed timetable date: {timetable} [{timetable_date}] successfully.')
 
-        if len(timetable.TimetableDates) == 1:
+        session.flush()
+
+        if len(timetable.TimetableDates) == 0:
             session.delete(timetable)
             logger.info(f'Admin: {user} removed timetable: {timetable} successfully.')
 
@@ -710,6 +723,8 @@ async def remove_timetable_confirmation(message: types.Message, state: FSMContex
     else:
         await message.answer(text=_('Некорректный ввод!'))
         return
+
+
 # endregion
 
 
@@ -751,7 +766,8 @@ def register_admin_menu(dp: Dispatcher):
     dp.register_message_handler(add_timetable_select_couple, state=StateAddAdditionalCouple.SelectCouple)
     dp.register_message_handler(add_timetable_select_date, state=StateAddAdditionalCouple.SelectDate)
     dp.register_message_handler(add_timetable_select_subgroup, state=StateAddAdditionalCouple.SelectSubgroup)
-    dp.register_message_handler(add_timetable_request_additional_information, state=StateAddAdditionalCouple.RequestAdditionalInformation)
+    dp.register_message_handler(add_timetable_request_additional_information,
+                                state=StateAddAdditionalCouple.RequestAdditionalInformation)
     dp.register_message_handler(add_timetable_confirmation, state=StateAddAdditionalCouple.Confirmation)
 
     dp.register_message_handler(remove_timetable_begin, text=_('➖ Удалить пару'), is_admin=True)

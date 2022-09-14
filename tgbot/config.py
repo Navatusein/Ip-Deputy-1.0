@@ -22,8 +22,6 @@ class Config:
 
 
 def load_config():
-    # load_dotenv(dotenv_path='E:\Projects\IpDeputyBot\.env')
-
     return Config(
         tg_bot=TgBot(
             token=os.environ.get("BOT_TOKEN"),
