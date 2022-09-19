@@ -371,6 +371,7 @@ async def get_submissions_select_subject(message: types.Message, state: FSMConte
             users[user.Id] = index
             text_array.append(
                 f'{submission.User.Student.full_name} {submission.SubjectType.ShortTypeName} {submission.WorkNumber}')
+            index += 1
 
     text_answer = '\n'.join(text_array)
 

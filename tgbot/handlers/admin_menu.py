@@ -438,7 +438,8 @@ async def add_timetable_confirmation(message: types.Message, state: FSMContext):
             date_string = f'[{date.strftime("%d.%m")}]'
 
             timetable = Timetable(TypeId=subject_type_id, SubjectId=subject_id, CoupleId=couple_id, DayId=day_id,
-                              Subgroup=subgroup, AdditionalInformation=additional_information, DateString=date_string)
+                                  Subgroup=subgroup, AdditionalInformation=additional_information,
+                                  DateString=date_string)
         else:
             date_string = timetable.DateString.replace("]", "")
             date_string += f', {date.strftime("%d.%m")}]'

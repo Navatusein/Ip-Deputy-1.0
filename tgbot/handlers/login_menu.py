@@ -32,7 +32,8 @@ async def login_contact(message: types.Message, state: FSMContext):
 
     if student is None:
         await message.answer(_('Вас нету в базе данных!'))
-        logger.warning(f"id: {user_id} phone: {phone_number} user: {message.from_user.username} can't be find in the database.")
+        logger.warning(f"id: {user_id} phone: {phone_number} user: {message.from_user.username} can't be find in the "
+                       f"database.")
         return
 
     user: User = User(TelegramId=user_id, StudentId=student.Id, Language='uk')
@@ -40,7 +41,8 @@ async def login_contact(message: types.Message, state: FSMContext):
     session.commit()
 
     await message.answer(_('Авторизация прошла успешно!'), reply_markup=main_menu)
-    logger.info(f"id: {user_id} phone: {phone_number} user: {message.from_user.username} added to users table successfully.")
+    logger.info(f"id: {user_id} phone: {phone_number} user: {message.from_user.username} added to users table "
+                f"successfully.")
     await state.finish()
 
 

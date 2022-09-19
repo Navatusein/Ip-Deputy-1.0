@@ -31,7 +31,8 @@ async def user_start(message: types.Message, state: FSMContext):
     else:
         student: Student = user.Student
         await message.answer(text=_('Добро пожаловать, {firstname} {lastname}').format(firstname=student.Firstname,
-                                                                                       lastname=student.Lastname), reply_markup=main_menu)
+                                                                                       lastname=student.Lastname),
+                             reply_markup=main_menu)
         logger.info(f"id: {user_id} user: {message.from_user.username} authorized successfully.")
 
         await state.finish()
