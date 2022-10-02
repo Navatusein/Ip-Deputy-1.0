@@ -430,6 +430,7 @@ async def add_timetable_confirmation(message: types.Message, state: FSMContext):
         day_id = date.weekday() + 1
 
         timetable = session.query(Timetable).filter(Timetable.TypeId == subject_type_id,
+                                                    Timetable.CoupleId == couple_id,
                                                     Timetable.SubjectId == subject_id,
                                                     Timetable.DayId == day_id,
                                                     Timetable.Subgroup == subgroup).first()
