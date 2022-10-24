@@ -56,16 +56,43 @@ async def timetable_file_get(message: types.Message, state: FSMContext):
             with timetable_file.open('Subjects.json') as json_file:
                 parsed_subjects_list = json.loads(json_file.read())
 
-                session.query(Subject).delete()
+                # session.query(Subject).delete()
+
+                new_subjects = []
 
                 for elem in parsed_subjects_list:
-                    subject = Subject(SubjectName=elem['SubjectName'], SubjectShortName=elem['SubjectShortName'],
-                                      LaboratoryCount=elem['LaboratoryCount'], PracticalCount=elem['PracticalCount'])
 
-                    session.add(subject)
+                    subject: Subject = session.query(Subject).where(Subject.SubjectName == elem['SubjectName']).first()
+
+                    if subject is not None:
+                        subject.SubjectShortName = elem['SubjectShortName']
+                        subject.LaboratoryCount = elem['LaboratoryCount']
+                        subject.PracticalCount = elem['PracticalCount']
+                        subject.NeedLaboratorySubmission = elem['NeedLaboratorySubmission']
+                        subject.NeedPracticalSubmission = elem['NeedPracticalSubmission']
+
+                    else:
+                        subject = Subject(SubjectName=elem['SubjectName'], SubjectShortName=elem['SubjectShortName'],
+                                          LaboratoryCount=elem['LaboratoryCount'],
+                                          PracticalCount=elem['PracticalCount'],
+                                          NeedLaboratorySubmission=elem['NeedLaboratorySubmission'],
+                                          NeedPracticalSubmission=elem['NeedPracticalSubmission'])
+
+                        session.add(subject)
+
+                    new_subjects.append(subject)
+
                     session.flush()
 
                     subject_dict[subject.SubjectName] = subject.Id
+
+                subject_list = session.query(Subject).all()
+
+                subjects_to_delete = list(set(subject_list) - set(new_subjects))
+
+                for elem in subjects_to_delete:
+                    session.delete(elem)
+                    session.flush()
 
             with timetable_file.open('Timetable.json') as json_file:
                 parsed_timetable_list = json.loads(json_file.read())
