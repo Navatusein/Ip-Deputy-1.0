@@ -176,7 +176,7 @@ async def show_full_timetable(message: types.Message):
             text_list.append(f'{" " * 5}{text} {timetable.Couple.Number} {timetable.Couple}')
             last_couple_id = timetable.CoupleId
 
-        text_list.append(f'{" " * 10}{timetable} {timetable.get_subgroup} {timetable.DateString}')
+        text_list.append(f'{" " * 10}{timetable} {timetable.DateString}')
 
     await message.answer(text='\n'.join(text_list), parse_mode='HTML')
 

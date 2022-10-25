@@ -1,3 +1,5 @@
+import os
+
 from sqlalchemy import Integer, Column, String, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship
@@ -27,7 +29,7 @@ class Timetable(Base):
         if self.Subgroup is None:
             return ''
         else:
-            return f' 11/{self.Subgroup}'
+            return f' {os.environ.get("GROUP")}/{self.Subgroup}'
 
     def __repr__(self):
         return f'{self.Subject.get_name} ({self.SubjectType.ShortTypeName}){self.get_subgroup}'

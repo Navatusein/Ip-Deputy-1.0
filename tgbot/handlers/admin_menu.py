@@ -127,6 +127,7 @@ async def timetable_file_get(message: types.Message, state: FSMContext):
         logger.error(f'User: {message.from_user.username} Id: {message.from_user.id} {ex}')
         return
 
+    # noinspection PyUnresolvedReferences
     user = session.query(User).filter(User.TelegramId == message.from_user.id).first()
 
     logger.info(f'Admin {user} new timetable import successful.')
@@ -176,8 +177,8 @@ async def notification_message_get(message: types.Message, state: FSMContext):
     else:
         disable_notification_text = _('🔔 Уведомление: Вкл')
 
-    await message.answer(text=_('💬 {message} \n{disable_notification_text} \n').format(message=message.text,
-                                                                                        disable_notification_text=disable_notification_text),
+    await message.answer(text=_('💬 {message} \n{disable_notification_text} \n')
+                         .format(message=message.text, disable_notification_text=disable_notification_text),
                          reply_markup=confirmation_menu)
 
     await StateSendNotification.Confirmation.set()
@@ -239,6 +240,7 @@ async def add_timetable_select_subject(message: types.Message, state: FSMContext
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
 
+    # noinspection PyUnresolvedReferences
     subject = session.query(Subject).filter(Subject.SubjectName == message.text).first()
 
     if subject is None:
@@ -265,6 +267,7 @@ async def add_timetable_select_subject_type(message: types.Message, state: FSMCo
     session: Session = message.bot.get('session')
     logger: logging.Logger = message.bot.get('logger')
 
+    # noinspection PyUnresolvedReferences
     subject_type = session.query(SubjectType).filter(SubjectType.TypeName == message.text).first()
 
     if subject_type is None:
@@ -306,6 +309,7 @@ async def add_timetable_select_couple(message: types.Message, state: FSMContext)
         await message.answer(text=_('Некорректный ввод!'))
         return
 
+    # noinspection PyUnresolvedReferences
     couple = session.query(Couple).filter(Couple.TimeBegin == parsed_message[0] + ':00',
                                           Couple.TimeEnd == parsed_message[1] + ':00').first()
 
@@ -410,9 +414,13 @@ async def add_timetable_request_additional_information(message: types.Message, s
         subgroup = data['subgroup']
         data['additional_information'] = additional_information
         date: datetime = data['date']
-
+    # noinspection PyUnresolvedReferences
     subject = session.query(Subject).filter(Subject.Id == subject_id).first()
+
+    # noinspection PyUnresolvedReferences
     subject_type = session.query(SubjectType).filter(SubjectType.Id == subject_type_id).first()
+
+    # noinspection PyUnresolvedReferences
     couple = session.query(Couple).filter(Couple.Id == couple_id).first()
 
     text_list = [
@@ -537,6 +545,7 @@ async def remove_timetable_select_day(message: types.Message, state: FSMContext)
     async with state.proxy() as data:
         data['day_id'] = day_id
 
+    # noinspection PyUnresolvedReferences
     day = session.query(Day).filter(Day.Id == day_id).first()
 
     keyboard = [[KeyboardButton(_('↩ Назад'))]]
@@ -621,7 +630,7 @@ async def remove_timetable_select_subject(message: types.Message, state: FSMCont
     if parsed_message[2].__contains__('11/'):
         try:
             subgroup_ = int(parsed_message[2][3:])
-        except ValueError as ex:
+        except ValueError:
             await message.answer(text=_('Некорректный ввод!'))
             return
         except Exception as ex:
@@ -685,7 +694,7 @@ async def remove_timetable_select_date(message: types.Message, state: FSMContext
 
     try:
         date = datetime.strptime(message.text, '%d.%m.%Y')
-    except ValueError as ex:
+    except ValueError:
         await message.answer(text=_('Некорректный ввод!'))
         return
     except Exception as ex:
