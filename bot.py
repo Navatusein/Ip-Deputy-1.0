@@ -91,7 +91,7 @@ async def main():
     if not path.exists('logs'):
         makedirs('logs')
     
-    handler = logging.FileHandler(f'logs\log.log')
+    handler = logging.FileHandler(f'logs/log.log')
     handler.setFormatter(logging.Formatter(log_format))
     logger.addHandler(handler)
 
