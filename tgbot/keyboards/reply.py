@@ -22,7 +22,7 @@ main_menu = ReplyKeyboardMarkup(
         [
             KeyboardButton(_('⁉ FAQ')), KeyboardButton(_('🗒 Информация'))
         ],
-[
+        [
             KeyboardButton(_('🌐 Ссылки'))
         ],
         [
